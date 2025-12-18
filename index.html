@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WashHub – Smart Laundry Management</title>
+  <meta name="description" content="WashHub is a smart laundry management mobile application developed with React Native." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#2563eb;
+      --secondary:#0ea5e9;
+      --bg:#0b1220;
+      --card:#0f172a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --shadow:0 20px 40px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 600px at 10% -10%, #1f3a8a22, transparent), radial-gradient(1000px 600px at 90% 10%, #0284c722, transparent), var(--bg); color:var(--text); font-family:Inter,system-ui;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:28px}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.7);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;font-size:20px}
+    nav a{margin-left:14px;color:var(--muted);font-weight:500;letter-spacing:.3px;}
+
+    nav a:hover{color:white}
+    .btn{display:inline-block;padding:14px 20px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));font-weight:600;transition:transform .2s, box-shadow .2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,99,235,.5)}
+    .glow-btn:hover{box-shadow:0 0 0 4px rgba(37,99,235,.15),0 10px 30px rgba(37,99,235,.6)}
+    section{padding:60px 0}
+
+
+    .hero{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:40px;
+  align-items:flex-start;
+  padding-bottom:120px; /* 👈 BURAYA */
+}
+
+    /*h1{font-size:52px;line-height:1.05}*/
+    
+    h2{font-size:34px;margin-bottom:12px}
+    h3{margin-top:0}
+    .lead{
+  color:var(--muted);
+  font-size:22px;
+  margin-top:32px;
+  max-width:880px;
+  text-align:center;     /* 👈 ortala */
+  margin-left:auto;      /* 👈 ortada tut */
+  margin-right:auto;     /* 👈 ortada tut */
+  transform: translateX(-25px);
+  transform: translateX(10px);
+
+}
+
+
+    .card{background:linear-gradient(180deg,#0f172a,#0b1220);border:1px solid #1f2937;border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+    .grid{display:grid;gap:24px}
+    .features{grid-template-columns:repeat(3,1fr)}
+    .screens{grid-template-columns:repeat(4,1fr)}
+    .pill{padding:10px 14px;border-radius:999px;border:1px solid #1f2937;background:#020617}
+    footer{border-top:1px solid #1f2937;color:var(--muted)}
+   
+
+
+   .hero-badge{
+  color: #cbd5f5;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 4px rgba(203,213,245,.25);
+  display: inline-block;
+  margin-top: -50px;
+  margin-bottom: 28px;
+}
+
+
+    footer{
+      border-top:1px solid #1f2937;
+      color:var(--muted)
+    }
+
+    nav a{
+     position:relative;
+     margin-left:14px;
+     color:var(--muted);
+     font-weight:500;
+     letter-spacing:.3px;
+    }
+
+    nav a::after{
+     content:"";
+     position:absolute;
+     left:0;
+     bottom:-6px;
+     width:0;
+     height:2px;
+     background:linear-gradient(135deg,var(--primary),var(--secondary));
+     transition:width .3s ease;
+    }
+
+    nav a.active{
+     color:white;
+    }
+
+    nav a.active::after{
+     width:100%;
+    }  
+
+    .mobile-pill{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .mobile-pill::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,.25),
+      transparent
+      );
+      transition:left .6s ease;
+    }
+
+    .mobile-pill:hover::before{
+      left:100%;
+    }
+
+    .mobile-pill:hover{
+      box-shadow:0 0 12px rgba(56,189,248,.6);
+    }
+
+.hero-title{
+  margin:0;
+
+}
+
+.hero-main{
+  font-size:44px;
+  font-weight:700;
+  line-height:1.1;
+}
+
+.hero-subline{
+  margin-top:6px;
+  font-size:38px;
+  font-weight:500;
+  letter-spacing:.4px;
+
+  text-align:center;   /* 👈 TAM ORTA */
+  transform: translateX(-30px); 
+
+  background: linear-gradient(
+    135deg,
+    #f1f5f9,
+    #cbd5f5,
+    #93c5fd
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 0 8px rgba(203,213,245,.35),
+    0 0 18px rgba(147,197,253,.25);
+}
+
+.hero-tags{
+  display:flex;
+  gap:14px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+
+.hero-tags .pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 16px;
+  font-size:14px;
+  font-weight:500;
+
+  background:rgba(2,6,23,.85);
+  border:1px solid rgba(148,163,184,.25);
+
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.hero-tags .pill:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(56,189,248,.35);
+}
+
+
+.hero-actions{
+  margin-top:36px;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  transform: translateX(-10px); /* 👈 başlıkla birebir hizalama */
+  flex-wrap:wrap;
+}
+
+.action-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:14px 22px;
+  border-radius:16px;
+
+  background:linear-gradient(180deg,#0f172a,#020617);
+  border:1px solid #1f2937;
+
+  font-weight:600;
+  color:#e5e7eb;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  transition:.25s ease;
+}
+
+.action-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:
+    0 0 0 4px rgba(37,99,235,.15),
+    0 18px 40px rgba(37,99,235,.45);
+}
+
+.action-btn .icon{
+  font-size:20px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(11,18,32,.55);
+  backdrop-filter:blur(12px);
+  animation:fadeIn .3s ease;
+}
+
+.modal-content{
+  position:relative;
+  z-index:2;
+  animation:scaleUp .35s ease;
+}
+
+.modal-content img{
+  max-height:85vh;
+  max-width:90vw;
+  border-radius:22px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+
+/* ANİMASYONLAR */
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes scaleUp{
+  from{
+    opacity:0;
+    transform:scale(.92);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+#features{
+  padding-top:135px;
+  margin-top:-80px;
+}
+
+/* Core Features cards */
+#features .card{
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 20px;
+  padding: 28px;
+
+  border: 1px solid rgba(148, 163, 184, 0.15);
+
+  box-shadow:
+    0 0 28px rgba(148, 163, 184, 0.10),
+    inset 0 0 20px rgba(148, 163, 184, 0.06);
+
+  backdrop-filter: blur(14px);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+#features .card:hover{
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 40px rgba(148, 163, 184, 0.18),
+    inset 0 0 22px rgba(148, 163, 184, 0.08);
+}
+
+.card h3{
+  margin-bottom:12px;
+
+  font-size:21px;
+  font-weight:700;
+  letter-spacing:.35px;
+
+  color:#c9c3d9;  /* 👈 gri + çok hafif mor */
+
+  text-shadow:0 1px 2px rgba(20,10,40,.45); /* 👈 derinlik, ışıltı değil */
+}
+
+#features .lead{
+  max-width: 900px;          /* 👈 yazı daha geniş yayılır */
+  margin: 20px auto 60px;    /* 👈 kartlarla araya boşluk */
+  text-align: center;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* Technology cards */
+#technology .card {
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 20px;
+  padding: 28px;
+
+  border: 1px solid rgba(148, 163, 184, 0.15);
+
+  box-shadow:
+    0 0 28px rgba(148, 163, 184, 0.10),
+    inset 0 0 20px rgba(148, 163, 184, 0.06);
+
+  backdrop-filter: blur(14px);
+  transition: transform .35s ease, box-shadow .35s ease;
+  text-align: center;
+}
+
+#technology .card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 40px rgba(148, 163, 184, 0.18),
+    inset 0 0 22px rgba(148, 163, 184, 0.08);
+}
+
+#technology .card h3 {
+  margin-bottom: 12px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: .35px;
+  color: #c9c3d9;
+  text-shadow: 0 1px 2px rgba(20,10,40,.45);
+}
+
+#technology .card p {
+  color: rgba(255,255,255,0.7);
+}
+
+#technology {
+  padding-top: 120px; /* eski değer muhtemelen 100px+ idi, bunu düşürdük */
+  margin-top: -20px; /* eski değer varsa onu da azaltabilirsin */
+}
+
+#technology .lead {
+  margin-bottom: 50px; /* önce muhtemelen 20px idi, artırdık */
+}
+
+
+/* Lead paragraf ile kutucuklar arasındaki boşluk */
+#technology .lead {
+  margin-bottom: 60px; /* önce 20px veya 30px idi, artırdık */
+}
+
+/* Kutucuklar arası ve alt boşluk */
+#technology .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 60px; /* kutucukların altındaki boşluk */
+  align-items: start;
+}
+
+
+
+
+.section-title{
+  font-size:37px;
+  font-weight:600;
+  margin-bottom:18px;
+  text-align:center;
+
+  background: linear-gradient(
+    135deg,
+    #f1f5f9,
+    #cbd5f5,
+    #93c5fd
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 0 8px rgba(203,213,245,.35),
+    0 0 18px rgba(147,197,253,.25);
+}
+
+#features .card p{
+  font-size:15.5px;
+  line-height:1.65;
+
+  color:#a8adb7;   /* 👈 aynı ton */
+}
+
+
+.screens-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+  margin-top:60px;
+}
+
+.phone-frame{
+  background:linear-gradient(180deg,#0f172a,#020617);
+  border-radius:34px;
+  padding:16px;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,255,255,.06);
+  cursor:pointer;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.phone-frame:hover{
+  transform:translateY(-6px) scale(1.04);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.75),
+    0 0 0 1px rgba(147,197,253,.35);
+}
+
+.phone-frame img{
+  width:100%;
+  border-radius:22px;
+}
+
+#screenModal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.85);
+  backdrop-filter:blur(12px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+#screenModal img{
+  max-height:90vh;
+  border-radius:26px;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+}
+
+#screenModal .close{
+  position:absolute;
+  top:24px;
+  right:32px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+#project {
+  padding-top: 50px; /* 40px → 60px ile biraz aşağı kaydırdık */
+  padding-bottom: 40px;
+}
+
+
+
+/* #project .grid: grid yapısı, sütun genişliği ve kutucuklar arası boşluk */
+#project .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 300 → 350px */
+  gap: 20px;
+  align-items: start; /* kutucuklar üstten hizalı */
+}
+
+
+/* #project .card: kutucukların genel tasarımı */
+/* Arka plan, border, gölge, blur ve hover efektleri */
+#project .card {
+  background: rgba(15, 23, 42, 0.65); /* yarı saydam arka plan */
+  border-radius: 20px; /* köşe yuvarlama */
+  padding: 28px; /* kutucuk iç boşluğu */
+  border: 1px solid rgba(148, 163, 184, 0.15); /* ince sınır */
+  box-shadow:
+    0 0 28px rgba(148, 163, 184, 0.10),
+    inset 0 0 20px rgba(148, 163, 184, 0.06); /* dış ve iç gölge */
+  backdrop-filter: blur(14px); /* arka planı hafif bulanık yap */
+  transition: transform .35s ease, box-shadow .35s ease; /* hover animasyonu */
+  display: flex;
+  flex-direction: column;
+  max-height: 468px; /* uzun içeriklerde scroll */
+  overflow-y: auto; /* dikey kaydırma */
+}
+
+/* Hover efekti: kutucuk hafif yukarı kalkar ve ışıklı gölge artar */
+#project .card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 40px rgba(148, 163, 184, 0.18),
+    inset 0 0 22px rgba(148, 163, 184, 0.08);
+}
+
+/* h3 başlıkları: renk, gölge ve ortalama */
+#project .card h3 {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: .35px;
+  color: #c9c3d9; /* hafif mor-gri ton */
+  text-shadow: 0 1px 2px rgba(20,10,40,.45); /* başlık gölgesi */
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* p paragraflar: yazı rengi ve satır yüksekliği */
+#project .card p {
+  color: rgba(200, 200, 200, 0.85);
+  font-size: 14px;
+  line-height: 1.5; /* okunabilir satır aralığı */
+}
+
+/* Sol kutucuk içindeki paragraflar: Project Objective */
+#project .card:first-child p {
+  font-size: 15px;       /* hafif büyütme */
+  line-height: 1.6;      /* daha rahat satır aralığı */
+  text-align: justify;    /* kutucuğa hizalı dağıtım */
+}
+
+
+/* Responsive: ekran <768px olursa kutucuklar alt alta gelir */
+@media (max-width: 768px) {
+  #project .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-icon-img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+
+  border-radius: 28px; /* app icon radius */
+  
+  /* ince parlak kenar */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* glow tamamen dışarıya */
+  box-shadow:
+    0 0 0 1px rgba(120, 160, 255, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 70px rgba(120, 160, 255, 0.45);
+
+  transition: all 0.4s ease;
+}
+
+.app-icon-img:hover {
+  transform: none;
+
+  box-shadow:
+    0 0 0 1px rgba(140, 180, 255, 0.35),
+    0 30px 90px rgba(0, 0, 0, 0.75),
+    0 0 90px rgba(140, 180, 255, 0.65);
+}
+
+
+.icon-wrapper {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.hero-icon {
+  margin-left: 70px; /* yazılardan uzaklaşır */
+}
+
+/* SCREENS SHOWCASE */
+.screens-showcase{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:32px;
+}
+
+
+#zoomBox{
+  position:fixed;
+  inset:0;
+  background:rgba(5,8,22,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+#zoomImg{
+  max-height:92vh;
+  border-radius:42px;
+  cursor:zoom-out;
+}
+
+
+/* Başlık ve paragraf arasındaki boşluğu küçült */
+.screens-header h2 {
+  margin-bottom: 30px; 
+}
+
+.screens-header p.lead {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Ekranları sabit aşağıda bırakmak için */
+.hero-screens {
+  margin-top: 20px; /* başlıktan ne kadar uzak olacak */
+  display: flex;
+  gap: -5px; /* ekranlar arası boşluk */
+}
+
+
+
+/* DRIBBBLE OVERLAPPING PHONES */
+.overlap-stage{
+  position:relative;
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.phone{
+  position:absolute;
+  height:72vh;
+  aspect-ratio:9 / 19.5;
+  border-radius:36px;
+  object-fit:contain;
+  cursor:pointer;
+  transition:all .45s ease;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.75),
+    0 0 80px rgba(120,170,255,.35);
+}
+
+/* OVERLAPPING PHONES FIXED */
+.overlap-wrapper{
+  position:relative;
+  width:100%;
+  height:80vh;              /* 🔥 EN KRİTİK SATIR */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.overlap-stage{
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-screens{
+  position:relative;
+  height:80vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:visible;
+}
+
+.phone{
+  position:absolute;
+  height:70vh;
+  width:auto;
+  max-width:90vw;
+  aspect-ratio:9 / 19.5;
+  object-fit:contain;
+
+  border-radius:36px;
+  cursor:zoom-in;
+  transition:.45s ease;
+
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.75),
+    0 0 80px rgba(120,170,255,.35);
+}
+
+/* MERKEZ */
+.phone-center{
+  z-index:5;
+  transform:scale(1);
+  opacity:1;
+}
+
+/* SOL */
+.phone-left{
+  transform:translateX(-220px) scale(.82) rotate(-6deg);
+  filter: blur(15px) brightness(.8) saturate(.7);
+  opacity:.65;
+  z-index:3;
+}
+
+/* EN SOL */
+.phone-far-left{
+  transform:translateX(-420px) scale(.68) rotate(-12deg);
+  filter: blur(15px) brightness(.8) saturate(.7);
+  opacity:.45;
+  z-index:1;
+}
+
+/* SAĞ */
+.phone-right{
+  transform:translateX(220px) scale(.82) rotate(6deg);
+  filter: blur(15px) brightness(.8) saturate(.7);
+  opacity:.65;
+  z-index:3;
+}
+
+/* EN SAĞ */
+.phone-far-right{
+  transform:translateX(420px) scale(.68) rotate(12deg);
+  filter: blur(15px) brightness(.8) saturate(.7);
+  opacity:.45;
+  z-index:1;
+}
+
+/* ZOOM */
+.phone.zoomed{
+  position:fixed;
+  inset:0;
+  margin:auto;
+  height:88vh;
+  transform:none !important;
+  opacity:1 !important;
+  z-index:999;
+  cursor:zoom-out;
+}
+
+/* BACKDROP */
+body.zoom-active::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(5,8,22,.65);
+  backdrop-filter:blur(10px);
+  z-index:998;
+}
+
+
+.phone{
+  filter: none;
+}
+
+.phone.zoomed{
+  filter:none !important;
+}
+
+
+
+
+
+    /* Fade-in animation */
+    .fade-in{opacity:0;transform:translateY(30px);transition:all .8s ease}
+    .fade-in.visible{opacity:1;transform:none}
+
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.features,.screens{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){h1{font-size:38px}.features,.screens{grid-template-columns:1fr}}
+
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand" style="background:linear-gradient(135deg,#60a5fa,#38bdf8);-webkit-background-clip:text;color:transparent;font-size:30px;letter-spacing:.8px;">WashHub</div>
+
+    <nav style="display:flex;align-items:center;gap:28px">
+      <div style="display:flex;align-items:center;gap:18px">
+        <a href="#features">Features</a>
+        <a href="#screens">App Screens</a>
+        <a href="#technology">Technology</a>
+        <a href="#project">Project</a>
+      </div>
+      <span class="pill mobile-pill" style="border-color:#2563eb;color:#93c5fd">
+  Mobile App
+</span>
+
+
+
+    </nav>
+
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <div>
+    <span class="pill hero-badge">Smart Laundry Management System</span>
+    <h1 class="hero-title">
+  <div class="hero-main">
+    Order <span class="amp">&</span>
+    Schedule <span class="amp">&</span>
+    Deliver
+  </div>
+  <div class="hero-subline">All-in-One Laundry App</div>
+</h1>
+
+
+    <p class="lead">
+      WashHub is a smart, mobile-first laundry management application that simplifies the entire laundry workflow
+      from ordering to doorstep delivery. Designed for modern urban living and academic use cases.
+    </p>
+
+<div class="hero-actions">
+
+  <button class="action-btn" data-img="order.png">
+    <span class="icon">🛒</span>
+    <span>Order</span>
+  </button>
+
+  
+  <button class="action-btn" data-img="wash.png">
+    <span class="icon">🧺</span>
+    <span>Wash & Iron</span>
+  </button>
+
+  <button class="action-btn" data-img="pickup.png">
+    <span class="icon">🚚</span>
+    <span>Pickup</span>
+  </button>
+
+  <button class="action-btn" data-img="delivery.png">
+    <span class="icon">🏠</span>
+    <span>Delivery</span>
+  </button>
+
+</div>
+
+
+
+
+
+    <a class="btn" href="#features" style="margin-top:45px">Explore Features</a>
+  </div>
+
+<div class="card icon-wrapper hero-icon">
+  <img
+    src="assets/hero-phone.png"
+    alt="WashHub App Icon"
+    class="app-icon-img"
+  />
+</div>
+
+</section>
+
+<section id="features">
+  <h2 class="section-title">Core Features</h2>
+  <p class="lead">WashHub is a modern, mobile-first laundry management application that streamlines
+  the entire service process — from placing an order to pickup, washing, and final delivery.</p>
+  <div class="grid features">
+    <div class="card">
+      <h3>Quick & Detailed Ordering</h3>
+      <p>Users can place a quick order by simply selecting an address and time, or create a detailed order by adding clothing items by category. Prices are calculated automatically based on selected services such as washing, ironing, or folding.</p>
+    </div>
+    <div class="card">
+      <h3>Smart Scheduling System</h3>
+      <p>The scheduling module prevents invalid selections by disabling past or fully booked time slots. This ensures smooth coordination between users, laundry facilities, and couriers.</p>
+    </div>
+    <div class="card">
+      <h3>Pickup & Delivery Workflow</h3>
+      <p>Once an order is placed, the courier picks up the laundry, the facility processes the items, and the cleaned clothes are delivered back to the user’s door with full status tracking.</p>
+    </div>
+  </div>
+</section>
+
+<section id="screens" class="screens-showcase">
+
+  <!-- Başlık ve açıklama ayrı container -->
+  <div class="screens-header">
+    <h2 class="section-title">Application Interface</h2>
+    <p class="lead">
+      The following screens demonstrate how users interact with WashHub
+      throughout the entire laundry lifecycle.
+    </p>
+  </div>
+
+  <!-- Ekranlar ayrı container -->
+  <div class="hero-screens">
+    <img src="assets/screen-1.png" class="phone phone-far-left" onclick="focusPhone(this)" alt="Login">
+    <img src="assets/screen-2.png" class="phone phone-left" onclick="focusPhone(this)" alt="Profile">
+    <img src="assets/screen-5.png" class="phone phone-center active" onclick="focusPhone(this)" alt="Home">
+    <img src="assets/screen-3.png" class="phone phone-right" onclick="focusPhone(this)" alt="Services">
+    <img src="assets/screen-4.png" class="phone phone-far-right" onclick="focusPhone(this)" alt="Orders">
+  </div>
+
+</section>
+
+
+
+<section id="technology">
+  <h2 class="section-title">Technologies Used</h2>
+  <p class="lead">WashHub is built using a modern mobile and backend technology stack.</p>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+    <div class="card" style="text-align:center">
+      <h3>React Native</h3>
+      <p class="muted">Cross-platform mobile application development for Android and iOS.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3>Node.js</h3>
+      <p class="muted">Backend runtime used for handling API requests and business logic.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3>MongoDB</h3>
+      <p class="muted">NoSQL database used for storing users, orders, and service data.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3>Ngrok</h3>
+      <p class="muted">Used during development to expose the local backend for mobile testing.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="project">
+  <h2 class="section-title">Project Overview</h2>
+  <p class="lead" style="text-align:center;max-width:760px;margin:0 auto 40px">
+    An overview of the motivation, goals, and academic contribution of the WashHub mobile application.
+  </p>
+
+  <div class="grid" style="grid-template-columns:1fr 1fr;align-items:stretch">
+
+    <!-- LEFT CARD -->
+    <div class="card" style="display:flex;flex-direction:column;gap:14px">
+      <h3 style="text-align:center">Project Objective</h3>
+     <p>
+WashHub provides a modern, mobile-first laundry service for everyone with busy or temporary lifestyles. 
+Users can place laundry orders, select pickup and delivery times, and track the entire service in real time 
+through a simple and intuitive interface.
+</p>
+<p>
+The application is perfect for tourists, single residents, people whose washing machines are temporarily out of order, 
+and busy urban professionals. With smart scheduling and automated price calculation, 
+WashHub reduces waiting times and makes laundry care fast, convenient, and stress-free.
+</p>
+
+
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:16px">
+      <h3 style="text-align:center">Source Code & Demo</h3>
+      <p style="text-align:center">
+        The complete source code of the WashHub mobile application is publicly available on GitHub
+        for academic evaluation and further development.
+      </p>
+      <img src="assets/qr.png" alt="GitHub QR Code" style="max-width:200px" />
+      <a href="https://github.com/zeynephcelikoglu/washhub" target="_blank" class="btn glow-btn" style="margin-top:6px">GitHub Repository</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">© 2025 WashHub · Muğla Sıtkı Koçman University · Software Engineering · Mobile Application Development
+</div>
+</footer>
+<script>
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
+
+<div class="modal" id="modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <img id="modal-img" src="" alt="App Screen">
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+
+  document.querySelectorAll(".action-btn").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault(); // 🔥 link davranışını öldürür
+      modalImg.src = btn.dataset.img;
+      modal.classList.add("show");
+    });
+  });
+
+  modal.addEventListener("click", ()=>{
+    modal.classList.remove("show");
+  });
+
+  document.addEventListener("keydown", e=>{
+    if(e.key === "Escape"){
+      modal.classList.remove("show");
+    }
+  });
+</script>
+
+
+
+<div id="zoomBox">
+  <img id="zoomImg">
+</div>
+
+<script>
+const mainPhone = document.getElementById("mainPhone");
+const zoomBox = document.getElementById("zoomBox");
+const zoomImg = document.getElementById("zoomImg");
+const thumbs = document.querySelectorAll(".thumb");
+
+/* ZOOM */
+mainPhone.addEventListener("click", ()=>{
+  zoomImg.src = mainPhone.src;
+  zoomBox.style.display = "flex";
+});
+
+zoomBox.addEventListener("click", ()=>{
+  zoomBox.style.display = "none";
+});
+
+/* THUMBNAILS */
+thumbs.forEach(t=>{
+  t.addEventListener("click", ()=>{
+    thumbs.forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    mainPhone.src = t.src;
+  });
+});
+</script>
+
+<script>
+const phones = document.querySelectorAll(".phone");
+const centerPhone = document.querySelector(".phone-center");
+
+phones.forEach(phone=>{
+  phone.addEventListener("click", ()=>{
+
+    /* ZOOM KAPAT */
+    if(phone.classList.contains("zoomed")){
+      phone.classList.remove("zoomed");
+      document.body.classList.remove("zoom-active");
+
+      // TÜM ACTIVE'LERİ TEMİZLE
+      phones.forEach(p => p.classList.remove("active"));
+
+      // ORTA TELEFONU TEKRAR ÜSTE AL
+      centerPhone.classList.add("active");
+      return;
+    }
+
+    /* ZOOM AÇ */
+    phones.forEach(p=>{
+      p.classList.remove("zoomed","active");
+    });
+
+    phone.classList.add("zoomed","active");
+    document.body.classList.add("zoom-active");
+  });
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
