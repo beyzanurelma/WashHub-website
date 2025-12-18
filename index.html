@@ -794,42 +794,48 @@ body.zoom-active::before{
     @media(max-width:520px){h1{font-size:38px}.features,.screens{grid-template-columns:1fr}}
 
 
+/* Desktop görünümü aynen kalsın */
+
+/* Sadece mobil için */
 @media (max-width: 768px) {
-  .hero-screens {
-    flex-direction: column;   /* alt alta */
-    align-items: center;
+  /* Container’ı ortala ve alt alta diz */
+  .screens-showcase, .hero-screens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* yatayda ortala */
+    gap: 16px;             /* kutular arası boşluk */
+    width: 100%;
+    margin: 0 auto;
   }
 
+  /* Görselleri küçült ve taşmayı önle */
   .phone {
-    width: 80%;   /* kutucuklar ekranı aşmasın */
+    width: 80%;            /* ekranın çoğunu kapla */
+    max-width: 300px;
+    height: auto;
     margin-bottom: 16px;
+    position: static;      /* absolute kaldır */
+    transform: none;       /* transform kaldır */
   }
 
-  .screens-header h2 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
+  /* Başlık ve paragrafı ortala */
+  .screens-header h2,
   .screens-header p.lead {
-    font-size: 1rem;
     text-align: center;
-    padding: 0 10px;   /* kenarlara boşluk ekle */
+    padding: 0 10px;       /* kenarlarda boşluk */
+    margin-top: 0;          /* üstten boşluk */
   }
-}
 
-@media (max-width: 768px) {
+  /* Gereksiz absolute/fixed konumları iptal et */
   .phone-left,
   .phone-right,
   .phone-center,
   .phone-far-left,
   .phone-far-right {
-    position: static;  /* normal akışa dönsün */
+    position: static;
     transform: none;
   }
 }
-
-
-
 
 
   </style>
