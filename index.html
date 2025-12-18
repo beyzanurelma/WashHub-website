@@ -801,84 +801,64 @@ body.zoom-active::before{
    ========================== */
 @media (max-width: 768px) {
 
-  /* Container ve ekranları alt alta diz */
+  /* Parent container’ları full width yap ve ortala */
   .screens-showcase,
   .hero-screens,
   .overlap-wrapper,
   .overlap-stage {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: auto !important;
+    width: 100% !important;
+    padding: 0 12px !important; /* kenarlardan boşluk */
     margin: 0 auto !important;
-    padding: 0 10px;
     overflow: visible !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
-  /* Telefon görselleri küçülsün ve üst üste binmesin */
-  .phone,
+  /* Telefon görselleri: küçük scale ile üst üste binmeyi önle */
   .phone-left,
   .phone-right,
-  .phone-center,
   .phone-far-left,
   .phone-far-right {
-    position: static !important;
-    transform: none !important;
-    width: 80% !important;
-    max-width: 300px !important;
-    height: auto !important;
-    margin-bottom: 16px !important;
+    transform: scale(0.6) translateX(0) !important;
+    margin: 0 6px !important;
     opacity: 1 !important;
-    filter: none !important;
   }
 
-  /* Başlık ve alt paragrafı ortala ve taşmayı önle */
+  .phone-center {
+    transform: scale(0.8) !important;
+  }
+
+  /* Başlık ve paragraf ortala ve taşmayı önle */
   .screens-header h2,
   .screens-header p.lead,
   .hero-main,
   .hero-subline {
     text-align: center !important;
-    transform: none !important;
-    margin: 0 auto !important;
     padding: 0 10px !important;
-    font-size: 1.5rem !important; /* istersen arttırıp küçültebilirsin */
-  }
-
-  /* Hero alanı grid ise stack et */
-  .hero {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 20px !important;
-  }
-
-  /* Hero tag/pill alanını sığdır */
-  .hero-tags {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-  }
-
-  /* Action butonlarını sığdır ve alt alta diz */
-  .hero-actions {
-    flex-direction: column !important;
-    gap: 12px !important;
-    justify-content: center !important;
+    margin: 0 auto !important;
     transform: none !important;
   }
 
-  /* Önemli: telefon ve kutucukların taşmasını önle */
+  /* Hero tag ve action alanlarını sığdır */
+  .hero-tags,
+  .hero-actions {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Gridler: sütun sayısı aynen kalsın, mobilde yatay görünümü bozmamak için */
   .screens-grid,
   #project .grid,
   #features .grid,
   #technology .grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
     width: 100% !important;
     margin: 0 auto !important;
     gap: 16px !important;
   }
 
 }
+
 
 
   </style>
