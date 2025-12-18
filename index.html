@@ -819,46 +819,39 @@ body.zoom-active::before{
 
 
 
-/* Desktop için: hiçbir şey değiştirmiyoruz, mevcut CSS geçerli */
-
-/* Sadece mobil (telefon ve küçük tablet) için düzenleme */
 @media (max-width: 768px) {
-  /* Container’ı ortala ve alt alta diz */
   .hero-screens {
-    display: flex;            /* zaten flex ise değiştirmeden kullan */
-    flex-direction: column;   /* kutular alt alta */
-    align-items: center;      /* yatayda ortala */
-    gap: 16px;                /* kutular arası boşluk */
-    width: 100%;              /* container ekranı aşmasın */
-    margin: 0 auto;           /* container ortada */
+    flex-direction: column;   /* alt alta */
+    align-items: center;
   }
 
-  /* Görselleri küçült ve ortala */
   .phone {
-    width: 80%;       /* ekranın çoğunu kaplasın */
-    max-width: 300px; /* aşırı büyümesin */
-    height: auto;
+    width: 80%;   /* kutucuklar ekranı aşmasın */
     margin-bottom: 16px;
   }
 
-  /* Absolute/fixed konumlamaları iptal et */
+  .screens-header h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .screens-header p.lead {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 10px;   /* kenarlara boşluk ekle */
+  }
+}
+
+@media (max-width: 768px) {
   .phone-left,
   .phone-right,
   .phone-center,
   .phone-far-left,
   .phone-far-right {
-    position: static;
+    position: static;  /* normal akışa dönsün */
     transform: none;
   }
-
-  /* Başlık ve paragrafı ortala */
-  .screens-header h2,
-  .screens-header p.lead {
-    text-align: center;
-    padding: 0 10px;
-  }
 }
-
 
 
 
