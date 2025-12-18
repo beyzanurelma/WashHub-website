@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WashHub – Smart Laundry Management</title>
   <meta name="description" content="WashHub is a smart laundry management mobile application developed with React Native." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -559,29 +558,6 @@
 }
 
 
-/* Örnek: mobilde ekranlar alt alta gelsin */
-@media (max-width: 768px) {
-  .hero-screens {
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .phone {
-    max-width: 80%; /* ekranı aşmasın */
-    height: auto;
-  }
-  
-  .screens-header h2 {
-    font-size: 1.5rem; /* başlığı küçült */
-  }
-
-  .screens-header p.lead {
-    font-size: 1rem;
-    text-align: center;
-  }
-}
-
 
 .app-icon-img {
   width: 400px;
@@ -819,37 +795,26 @@ body.zoom-active::before{
 
 
 
+/* Örnek: mobilde ekranlar alt alta gelsin */
 @media (max-width: 768px) {
   .hero-screens {
-    flex-direction: column;   /* alt alta */
+    flex-direction: column;
+    gap: 16px;
     align-items: center;
   }
 
   .phone {
-    width: 80%;   /* kutucuklar ekranı aşmasın */
-    margin-bottom: 16px;
+    max-width: 80%; /* ekranı aşmasın */
+    height: auto;
   }
-
+  
   .screens-header h2 {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 1.5rem; /* başlığı küçült */
   }
 
   .screens-header p.lead {
     font-size: 1rem;
     text-align: center;
-    padding: 0 10px;   /* kenarlara boşluk ekle */
-  }
-}
-
-@media (max-width: 768px) {
-  .phone-left,
-  .phone-right,
-  .phone-center,
-  .phone-far-left,
-  .phone-far-right {
-    position: static;  /* normal akışa dönsün */
-    transform: none;
   }
 }
 
