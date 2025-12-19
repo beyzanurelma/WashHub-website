@@ -796,35 +796,33 @@ body.zoom-active::before{
 
 @media (max-width: 768px) {
 
-  /* HERO GRID → TEK KOLON */
-  .hero {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    padding-bottom: 60px !important;
-    justify-items: center !important;
-    text-align: center !important;
+  /* Layout'u bozma, sadece sıkıştır */
+  .container{
+    padding-left:16px;
+    padding-right:16px;
   }
 
-  /* SOLA KAYDIRAN TÜM TRANSLATE’LERİ KAPAT */
+  .hero{
+    width:100%;
+    max-width:100vw;
+  }
+
+  /* Desktop'taki sola itmeleri kapat */
   .lead,
-  .hero-subline,
-  .hero-main {
-    transform: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  .hero-subline{
+    transform:none !important;
   }
 
-  /* HERO İÇERİĞİ TAM ORTA */
-  .hero > * {
-    width: 100% !important;
-    max-width: 100% !important;
+  /* Ekranlar desktop gibi kalsın ama küçülsün */
+  .overlap-stage{
+    transform:scale(0.75);
+    transform-origin:center top;
   }
 
-  /* SAĞ BOŞLUK KESİN BİTTİ */
-  html, body {
-    overflow-x: hidden;
+  /* Taşma kontrolü */
+  html,body{
+    overflow-x:hidden;
   }
-
 }
 
 
