@@ -796,51 +796,36 @@ body.zoom-active::before{
 
 @media (max-width: 768px) {
 
-  .overlap-stage {
-    position: relative !important;
+  /* HERO GRID → TEK KOLON */
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding-bottom: 60px !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  /* SOLA KAYDIRAN TÜM TRANSLATE’LERİ KAPAT */
+  .lead,
+  .hero-subline,
+  .hero-main {
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* HERO İÇERİĞİ TAM ORTA */
+  .hero > * {
     width: 100% !important;
-    max-width: 100vw !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: visible !important;
-    transform: scale(0.7) !important;
-    transform-origin: center center !important;
+    max-width: 100% !important;
   }
 
-}
-
-@media (max-width: 768px) {
-
-  .phone-left,
-  .phone-right,
-  .phone-far-left,
-  .phone-far-right,
-  .phone-center {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-}
-
-
-@media (max-width: 768px) {
-
-  .hero-screens,
-  .screens-showcase,
-  .overlap-wrapper {
-    display: flex !important;
-    justify-content: center !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-  }
-
-  body {
+  /* SAĞ BOŞLUK KESİN BİTTİ */
+  html, body {
     overflow-x: hidden;
   }
 
 }
-
 
 
 
