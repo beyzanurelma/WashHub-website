@@ -796,15 +796,16 @@ body.zoom-active::before{
 
 @media (max-width: 768px) {
 
-  /* Overlap sahnesini resetle */
   .overlap-stage {
-    position: static !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 24px !important;
+    position: relative !important;
     width: 100% !important;
+    max-width: 100vw !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     overflow: visible !important;
+    transform: scale(0.7) !important;
+    transform-origin: center center !important;
   }
 
 }
@@ -816,39 +817,30 @@ body.zoom-active::before{
   .phone-far-left,
   .phone-far-right,
   .phone-center {
-    position: static !important;
-    transform: none !important;
     opacity: 1 !important;
-    width: 80% !important;
-    max-width: 320px !important;
+    visibility: visible !important;
   }
 
 }
 
+
 @media (max-width: 768px) {
 
-  .screens-showcase,
   .hero-screens,
+  .screens-showcase,
   .overlap-wrapper {
+    display: flex !important;
+    justify-content: center !important;
     width: 100% !important;
-    overflow: visible !important;
-    padding: 0 16px !important;
+    margin: 0 auto !important;
   }
-
-}
-
-@media (max-width: 768px) {
 
   body {
     overflow-x: hidden;
   }
 
-  section {
-    width: 100%;
-    max-width: 100vw;
-  }
-
 }
+
 
 
 
