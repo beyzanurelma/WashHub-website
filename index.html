@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1200">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WashHub – Smart Laundry Management</title>
   <meta name="description" content="WashHub is a smart laundry management mobile application developed with React Native." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -793,9 +793,42 @@ body.zoom-active::before{
     @media(max-width:900px){.hero{grid-template-columns:1fr}.features,.screens{grid-template-columns:1fr 1fr}}
     @media(max-width:520px){h1{font-size:38px}.features,.screens{grid-template-columns:1fr}}
 
-body{
-  min-width:1200px;
+@media (max-width: 768px) {
+
+  /* sadece taşmayı engelle */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* grid sayısını düşür ama yan yana kalsın */
+  .screens-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* overlap efektini KORU ama mesafeleri azalt */
+  .phone-left {
+    transform: translateX(-140px) scale(.75) rotate(-5deg);
+  }
+
+  .phone-far-left {
+    transform: translateX(-260px) scale(.6) rotate(-9deg);
+  }
+
+  .phone-right {
+    transform: translateX(140px) scale(.75) rotate(5deg);
+  }
+
+  .phone-far-right {
+    transform: translateX(260px) scale(.6) rotate(9deg);
+  }
+
+  /* yükseklik düşür */
+  .hero-screens,
+  .overlap-wrapper {
+    height: 60vh;
+  }
 }
+
 
 
 
