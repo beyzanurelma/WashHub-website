@@ -834,11 +834,17 @@ body.zoom-active::before{
   }
 
   .hamburger{display:block}
-  #nav-menu{display:none;position:fixed;top:60px;left:0;width:100%;background:var(--card);flex-direction:column;padding:15px;z-index:11;gap:15px}
+  #nav-menu{display:flex;flex-wrap:wrap;gap:10px}
   #nav-menu.show{display:flex}
-  #nav-menu.show div{flex-direction:column;gap:15px}
+  #nav-menu.show div{flex-direction:row;flex-wrap:wrap;gap:10px}
   #nav-menu.show a{font-size:12px}
   #nav-menu.show .mobile-pill{align-self:flex-end;margin-top:10px;font-size:12px}
+
+  .hamburger{display:none}
+  #nav-menu{display:flex}
+  #nav-menu div{flex-direction:row;flex-wrap:wrap;gap:10px}
+  #nav-menu a{font-size:12px}
+  #nav-menu .mobile-pill{margin-right:auto;font-size:12px}
 
   .container{padding:14px}
 
@@ -874,13 +880,13 @@ body.zoom-active::before{
 
     <nav id="nav-menu" style="display:flex;align-items:center;gap:28px">
       <div style="display:flex;align-items:center;gap:18px">
+        <span class="pill mobile-pill" style="border-color:#2563eb;color:#93c5fd">
+  Mobile App
+</span>
         <a href="#features">Features</a>
         <a href="#screens">App Screens</a>
         <a href="#technology">Technology</a>
         <a href="#project">Project</a>
-        <span class="pill mobile-pill" style="border-color:#2563eb;color:#93c5fd">
-  Mobile App
-</span>
       </div>
 
 
