@@ -795,8 +795,9 @@ body.zoom-active::before{
 
 @media (max-width: 768px) {
 
-  /* sadece taşmayı engelle */
-  body {
+  /* SADECE overlap alanını kes */
+  .hero,
+  .overlap-wrapper {
     overflow-x: hidden;
   }
 
@@ -827,7 +828,14 @@ body.zoom-active::before{
   .overlap-wrapper {
     height: 60vh;
   }
+
+  /* ⭐ EN SON BUNU EKLE ⭐ */
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
+
 
 
 
