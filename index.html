@@ -787,8 +787,7 @@ body.zoom-active::before{
 
 
     /* Fade-in animation */
-    .fade-in{opacity:0;transform:translateY(30px);transition:all .8s ease}
-    .fade-in.visible{opacity:1;transform:none}
+    .hamburger{display:none;background:none;border:none;font-size:24px;color:var(--text);cursor:pointer}
 
     @media(max-width:900px){.hero{grid-template-columns:1fr}.features,.screens{grid-template-columns:1fr 1fr}}
     @media(max-width:520px){h1{font-size:38px}.features,.screens{grid-template-columns:1fr}}
@@ -834,6 +833,12 @@ body.zoom-active::before{
     margin-left: 0;
     margin-right: 0;
   }
+
+  .hamburger{display:block}
+  #nav-menu{display:none;position:fixed;top:60px;left:0;width:100%;background:var(--card);flex-direction:column;padding:20px;z-index:11;gap:20px}
+  #nav-menu.show{display:flex}
+
+  .container{padding:14px}
 }
 
 
@@ -851,7 +856,9 @@ body.zoom-active::before{
   <div class="container nav">
     <div class="brand" style="background:linear-gradient(135deg,#60a5fa,#38bdf8);-webkit-background-clip:text;color:transparent;font-size:30px;letter-spacing:.8px;">WashHub</div>
 
-    <nav style="display:flex;align-items:center;gap:28px">
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <nav id="nav-menu" style="display:flex;align-items:center;gap:28px">
       <div style="display:flex;align-items:center;gap:18px">
         <a href="#features">Features</a>
         <a href="#screens">App Screens</a>
@@ -1048,6 +1055,11 @@ body.zoom-active::before{
 </div>
 </footer>
 <script>
+function toggleMenu() {
+  const menu = document.getElementById('nav-menu');
+  menu.classList.toggle('show');
+}
+
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll("nav a");
 
